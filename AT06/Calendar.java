@@ -43,7 +43,7 @@ public class Calendar {
         if (firstDay == DayOfWeek.MONDAY) {
             for (int i = 1; i <= 7; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
@@ -54,7 +54,7 @@ public class Calendar {
             System.out.print("    ");
             for (int i = 1; i <= 6; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
@@ -65,7 +65,7 @@ public class Calendar {
             System.out.print("        ");
             for (int i = 1; i <= 5; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
@@ -76,7 +76,7 @@ public class Calendar {
             System.out.print("            ");
             for (int i = 1; i <= 4; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
@@ -87,7 +87,7 @@ public class Calendar {
             System.out.print("                ");
             for (int i = 1; i <= 3; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
@@ -98,7 +98,7 @@ public class Calendar {
             System.out.print("                    ");
             for (int i = 1; i <= 2; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
@@ -109,7 +109,7 @@ public class Calendar {
             System.out.print("                        ");
             for (int i = 1; i <= 1; i++) {
                 if (i == today.getDayOfMonth()) {
-                    System.out.printf("3d*", i);
+                    System.out.printf("%3d*", i);
                 } else {
                     System.out.printf("%3d ", i);
                 }
