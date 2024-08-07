@@ -95,7 +95,7 @@ public class Calendar {
                 printDay = i;
             }
         } else if (firstDay == DayOfWeek.SATURDAY) {
-            System.out.print("                ");
+            System.out.print("                    ");
             for (int i = 1; i <= 2; i++) {
                 if (i == today.getDayOfMonth()) {
                     System.out.printf("3d*", i);
@@ -106,7 +106,7 @@ public class Calendar {
                 printDay = i;
             }
         } else if (firstDay == DayOfWeek.SUNDAY) {
-            System.out.print("                ");
+            System.out.print("                        ");
             for (int i = 1; i <= 1; i++) {
                 if (i == today.getDayOfMonth()) {
                     System.out.printf("3d*", i);
