@@ -14,6 +14,10 @@ class Dice {
     int number;
     String display;
 
+    public Dice() {
+        roll();
+    }
+
     // roll dice
     public void roll() {
         number = random.nextInt(1, 7);
@@ -63,7 +67,7 @@ class Dice {
 
 }
 
-public class PartD {
+public class PartA {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Dice dice = new Dice();

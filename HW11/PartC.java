@@ -1,3 +1,10 @@
+/*
+ * Jerry Zhang
+ * Mr. Eng
+ * AT Java
+ * HW11 PartC
+*/
+
 import java.util.Scanner;
 
 public class PartC {
