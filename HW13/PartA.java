@@ -1,3 +1,10 @@
+/*
+ * Jerry Zhang
+ * Mr. Eng
+ * AT Java
+ * HW13 PartA
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;

@@ -1,3 +1,10 @@
+/*
+ * Jerry Zhang
+ * Mr. Eng
+ * AT Java
+ * HW13 PartB
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
@@ -5,40 +12,19 @@ import javax.swing.*;
 public class PartB {
 
     public static void draw(Graphics g) {
-        /*
-         * j loop for rows
-         * print first square, set i odd/even depending
-         * while i <= 300
-         * print based on if/else
-         * i = i + 1
-         */
-        int i = 0;
-        int y = 0;
-        int x = 100;
-        for (int j = 0; j < 400; j = j + 100) {
-            if (i % 200 == 0) {
-                g.setColor(Color.BLUE);
-                g.fillRect(100, y, 100, 100);
-                i = i + 100;
-                x = 100;
-            } else {
-                g.setColor(Color.RED);
-                g.fillRect(100, y, 100, 100);
-                x = 100;
-            }
-            while (x < 400) {
-                if (i % 200 == 0) {
+        int xAxis = 0;
+        int yAxis = 0;
+        int blueRed = 0;
+        for (yAxis = 0; yAxis < 500; yAxis = yAxis + 100) {
+            for (xAxis = 0; xAxis < 500; xAxis = xAxis + 100, blueRed = blueRed + 1) {
+                if (blueRed % 2 == 0) {
                     g.setColor(Color.BLUE);
-                    g.fillRect(x, y, 100, 100);
+                    g.fillRect(xAxis, yAxis, 100, 100);
                 } else {
                     g.setColor(Color.RED);
-                    g.fillRect(x, y, 100, 100);
+                    g.fillRect(xAxis, yAxis, 100, 100);
                 }
-                x = x + 100;
-                i = i + 100;
             }
-            y = y + 100;
-            i = i + 100;
         }
     }
 
