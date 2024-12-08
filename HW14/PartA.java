@@ -30,8 +30,7 @@ public class PartA {
          * d) array[2] = array[3];
          * 
          * C. Only c will cause a runtime error, because there is not a 6th value (#5
-         * from
-         * 0 index) in the array, causing a runtime error
+         * from 0 index) in the array, causing a runtime error
          */
 
         /*
