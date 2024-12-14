@@ -1,0 +1,20 @@
+            // check if either hit blackjack
+            if (dealerScore == 21 && playerScore == 21) {
+                clearScreen();
+                System.out.printf("Dealer: %s %s%nPlayer: %s %s%n", dealer[0].getFace(), dealer[1].getFace(),
+                        player[0].getFace(),
+                        player[1].getFace());
+                System.out.println("Both dealer and player hits blackjack! Game tied!");
+            } else if (dealerScore == 21) {
+                clearScreen();
+                System.out.printf("Dealer: %s %s%nPlayer: %s %s%n", dealer[0].getFace(), dealer[1].getFace(),
+                        player[0].getFace(),
+                        player[1].getFace());
+                System.out.println("Dealer blackjack! Dealer wins!");
+            } else if (playerScore == 21) {
+                clearScreen();
+                System.out.printf("Dealer: %s %s%nPlayer: %s %s%n", dealer[0].getFace(), dealer[1].getFace(),
+                        player[0].getFace(),
+                        player[1].getFace());
+                System.out.println("Player blackjack! Player wins!");
+            }
