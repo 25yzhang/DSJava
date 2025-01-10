@@ -1,0 +1,8 @@
+        while (in.hasNext()) {
+            int ID = in.nextInt();
+            out.print(ID);
+            String name = in.next();
+            double balance = in.nextDouble();
+
+            out.printf("%06d |%12s | $%,15.2f%n", ID, name, balance);
+        }
