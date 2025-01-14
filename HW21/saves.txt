@@ -1,0 +1,6 @@
+            if (in.next().equals("n/a")) {
+                revenue = 0.0;
+                in.next();
+            } else {
+                revenue = Double.valueOf(in.next());
+            }
