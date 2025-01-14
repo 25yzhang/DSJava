@@ -5,7 +5,6 @@
  * AT06 Unit Project - Blackjack
  */
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 class Cards {
@@ -140,7 +139,7 @@ class Cards {
 
 }
 
-public class Blackjack {
+public class BlackjackOld {
     // method to clear terminal screen
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -150,8 +149,8 @@ public class Blackjack {
     public static void main(String[] args) {
 
         // create arrays
-        ArrayList<Cards> player = new ArrayList<Cards>();
-        ArrayList<Cards> dealer = new ArrayList<Cards>();
+        Cards[] player = new Cards[10];
+        Cards[] dealer = new Cards[10];
 
         // initialize score valeus
         int playerScore = 0;
@@ -170,20 +169,21 @@ public class Blackjack {
 
         while (condition) {
             // hand out initial cards
-            for (int i = 0; i < 2; i++) {
-                player.add(i, new Cards()); // changed
-                dealer.add(i, new Cards()); // changed
+            int i = 0;
+            for (i = 0; i < 2; i++) {
+                player[i] = new Cards();
+                dealer[i] = new Cards();
             }
-            playerPlace = player.size();
-            dealerPlace = dealer.size();
+            playerPlace = i;
+            dealerPlace = i;
 
             // show initial cards
-            System.out.printf("Dealer: %s ##%nPlayer: %s %s%n", dealer.get(0).getFace(), player.get(0).getFace(),
-                    player.get(1).getFace()); // changed
+            System.out.printf("Dealer: %s ##%nPlayer: %s %s%n", dealer[0].getFace(), player[0].getFace(),
+                    player[1].getFace());
 
             // set initial scores
-            playerScore = player.get(0).getScore() + player.get(1).getScore(); // changed
-            dealerScore = dealer.get(0).getScore() + dealer.get(1).getScore(); // changed
+            playerScore = player[0].getScore() + player[1].getScore();
+            dealerScore = dealer[0].getScore() + dealer[1].getScore();
 
             // player loop
             while (playerScore < 21) {
@@ -193,25 +193,25 @@ public class Blackjack {
                     break;
                 } else if (in.hasNext("H") || in.hasNext("h")) {
                     in.next();
-                    player.add(playerPlace, new Cards()); // changed
-                    playerScore = playerScore + player.get(playerPlace).getScore(); // changed
+                    player[playerPlace] = new Cards();
+                    playerScore = playerScore + player[playerPlace].getScore();
                     playerPlace = playerPlace + 1;
                     // check if player has aces
-                    if (playerScore > 21) {
-                        while (o < player.size() - 1) {
-                            if (player.get(o).getScore() == 11) {
+                    while (playerScore > 21) {
+                        while (n < playerPlace) {
+                            if (player[n].getScore() == 11) {
                                 playerScore = playerScore - 10;
                             }
-                            o = o + 1;
+                            n = n + 1;
                         }
+                        break;
                     }
-
                     // print updated player cards
                     clearScreen();
-                    System.out.printf("Dealer: %s ##%nPlayer: ", dealer.get(0).getFace()); // changed
+                    System.out.printf("Dealer: %s ##%nPlayer: ", dealer[0].getFace());
                     int j = 0;
                     for (j = 0; j < playerPlace; j++) {
-                        System.out.print(player.get(j).getFace() + " "); // changed
+                        System.out.print(player[j].getFace() + " ");
                     }
                     playerPlace = j;
                     System.out.println();
@@ -221,9 +221,9 @@ public class Blackjack {
             // check if player busts
             if (playerScore > 21) {
                 clearScreen();
-                System.out.printf("Dealer: %s %s%nPlayer: ", dealer.get(0).getFace(), dealer.get(1).getFace()); // changed
+                System.out.printf("Dealer: %s %s%nPlayer: ", dealer[0].getFace(), dealer[1].getFace());
                 for (int l = 0; l < playerPlace; l++) {
-                    System.out.print(player.get(l).getFace() + " "); // changed
+                    System.out.print(player[l].getFace() + " ");
                 }
                 System.out.println();
                 System.out.println("Player busts! Dealer wins!");
@@ -232,31 +232,31 @@ public class Blackjack {
             // reveal dealer card and calculate results
             if (playerScore == 21) {
                 clearScreen();
-                System.out.printf("Dealer: %s %s%nPlayer: ", dealer.get(0).getFace(), dealer.get(1).getFace()); // changed
+                System.out.printf("Dealer: %s %s%nPlayer: ", dealer[0].getFace(), dealer[1].getFace());
                 for (int l = 0; l < playerPlace; l++) {
-                    System.out.print(player.get(l).getFace() + " "); // changed
+                    System.out.print(player[l].getFace() + " ");
                 }
                 System.out.println();
                 System.out.println("Player blackjack! Player wins!");
             }
             if (playerScore < 21) {
                 clearScreen();
-                System.out.printf("Dealer: %s %s ", dealer.get(0).getFace(), dealer.get(1).getFace()); // changed
+                System.out.printf("Dealer: %s %s ", dealer[0].getFace(), dealer[1].getFace());
                 // draw dealer's cards
                 while (dealerScore < 17) {
-                    dealer.add(dealerPlace, new Cards()); // changed
+                    dealer[dealerPlace] = new Cards();
                     // check for dealer aces
-                    if (dealerScore > 21) {
+                    while (dealerScore > 21) {
                         while (o < dealerPlace) {
-                            if (dealer.get(o).getScore() == 11) { // changed
+                            if (dealer[o].getScore() == 11) {
                                 dealerScore = dealerScore - 10;
+                                o = o + 1;
                             }
-                            o = o + 1;
                             break;
                         }
                     }
-                    System.out.printf("%s ", dealer.get(dealerPlace).getFace()); // changed
-                    dealerScore = dealerScore + dealer.get(dealerPlace).getScore(); // changed
+                    System.out.printf("%s ", dealer[dealerPlace].getFace());
+                    dealerScore = dealerScore + dealer[dealerPlace].getScore();
                     dealerPlace = dealerPlace + 1;
                 }
                 System.out.println();
@@ -264,7 +264,7 @@ public class Blackjack {
                 // reprint player card
                 System.out.print("Player: ");
                 for (int m = 0; m < playerPlace; m++) {
-                    System.out.print(player.get(m).getFace() + " "); // changed
+                    System.out.print(player[m].getFace() + " ");
                 }
                 System.out.println();
 
@@ -292,12 +292,6 @@ public class Blackjack {
                 in.next();
                 clearScreen();
                 condition = true;
-            }
-            while (player.size() > 0) {
-                player.remove(player.size() - 1);
-            }
-            while (dealer.size() > 0) {
-                dealer.remove(dealer.size() - 1);
             }
         }
         in.close();

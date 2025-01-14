@@ -138,9 +138,51 @@ class Cards {
         return (suitSymbol + rankSymbol);
     }
 
+    public Cards(char y, int x) {
+        // set suit
+        if (y == 's') {
+            suit = Suit.SPADE;
+        } else if (y == 'h') {
+            suit = Suit.HEART;
+        } else if (y == 'c') {
+            suit = Suit.CLUB;
+        } else if (y == 'd') {
+            suit = Suit.DIAMOND;
+        }
+
+        // set rank
+        if (x == 1) {
+            rank = Rank.ACE;
+        } else if (x == 2) {
+            rank = Rank.TWO;
+        } else if (x == 3) {
+            rank = Rank.THREE;
+        } else if (x == 4) {
+            rank = Rank.FOUR;
+        } else if (x == 5) {
+            rank = Rank.FIVE;
+        } else if (x == 6) {
+            rank = Rank.SIX;
+        } else if (x == 7) {
+            rank = Rank.SEVEN;
+        } else if (x == 8) {
+            rank = Rank.EIGHT;
+        } else if (x == 9) {
+            rank = Rank.NINE;
+        } else if (x == 10) {
+            rank = Rank.TEN;
+        } else if (x == 11) {
+            rank = Rank.JACK;
+        } else if (x == 12) {
+            rank = Rank.QUEEN;
+        } else if (x == 13) {
+            rank = Rank.KING;
+        }
+    }
+
 }
 
-public class Blackjack {
+public class BlackjackTest {
     // method to clear terminal screen
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -170,10 +212,13 @@ public class Blackjack {
 
         while (condition) {
             // hand out initial cards
-            for (int i = 0; i < 2; i++) {
-                player.add(i, new Cards()); // changed
-                dealer.add(i, new Cards()); // changed
-            }
+            // SET CARDS HERE
+            dealer.add(new Cards('h', 2));
+            dealer.add(new Cards('h', 2));
+
+            player.add(new Cards('h', 2));
+            player.add(new Cards('h', 8));
+
             playerPlace = player.size();
             dealerPlace = dealer.size();
 
@@ -193,19 +238,19 @@ public class Blackjack {
                     break;
                 } else if (in.hasNext("H") || in.hasNext("h")) {
                     in.next();
-                    player.add(playerPlace, new Cards()); // changed
+                    player.add(playerPlace, new Cards('h', 1)); // CHANGE HERE TO SET CARD
                     playerScore = playerScore + player.get(playerPlace).getScore(); // changed
                     playerPlace = playerPlace + 1;
                     // check if player has aces
-                    if (playerScore > 21) {
-                        while (o < player.size() - 1) {
-                            if (player.get(o).getScore() == 11) {
+                    while (playerScore > 21) {
+                        while (n < playerPlace) {
+                            if (player.get(n).getScore() == 11) { // changed
                                 playerScore = playerScore - 10;
                             }
-                            o = o + 1;
+                            n = n + 1;
                         }
+                        break;
                     }
-
                     // print updated player cards
                     clearScreen();
                     System.out.printf("Dealer: %s ##%nPlayer: ", dealer.get(0).getFace()); // changed
@@ -246,12 +291,12 @@ public class Blackjack {
                 while (dealerScore < 17) {
                     dealer.add(dealerPlace, new Cards()); // changed
                     // check for dealer aces
-                    if (dealerScore > 21) {
+                    while (dealerScore > 21) {
                         while (o < dealerPlace) {
                             if (dealer.get(o).getScore() == 11) { // changed
                                 dealerScore = dealerScore - 10;
+                                o = o + 1;
                             }
-                            o = o + 1;
                             break;
                         }
                     }
@@ -292,12 +337,6 @@ public class Blackjack {
                 in.next();
                 clearScreen();
                 condition = true;
-            }
-            while (player.size() > 0) {
-                player.remove(player.size() - 1);
-            }
-            while (dealer.size() > 0) {
-                dealer.remove(dealer.size() - 1);
             }
         }
         in.close();
