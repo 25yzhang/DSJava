@@ -2,4 +2,6 @@ Part A
 Reptile would be the superclass because snake, reptile, and crocodiles all fall into the reptile category
 
 Part B
-Intrument myIntstrument cannot be passed into the method tune(Guitar G) because guitar is a subclass of instrument, and therefore does not have
+Intrument myInstrument cannot be passed into the method tune(Guitar G) because guitar is a subclass of instrument, 
+and therefore does not have the same traits as guitars. All guitars are instruments, but not all instruments are
+guitars.

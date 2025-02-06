@@ -14,4 +14,8 @@ public class Bovine extends Mammal {
     public double getHayConsumed() {
         return hayConsumed;
     }
+
+    public void printInfo() {
+        System.out.printf("name : %s%nhay: %d%n", getName(), getHayConsumed());
+    }
 }
