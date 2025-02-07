@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import mow.Yard;
+import mow.*;
 
 public class Test {
     public static void clearScreen() {
@@ -19,15 +19,17 @@ public class Test {
         // clear screen
         clearScreen();
 
+        // initialize mower object
+        Mower testMower = new Mower();
+
         // initialize yard object
         Yard testYard = new Yard(height, width);
-        testYard.printYard();
+        testYard.printYard(testMower);
 
         // testing various functions
-        System.out.println("Now changing 0,0 (brick) to a ' '");
-        System.out.println(testYard.returnStatus(0, 0));
+        System.out.println("Now changing 0,0 to a ' '");
         testYard.cellOverride(0, 0, ' ');
-        System.out.println(testYard.returnStatus(0, 0));
+        testYard.printYard(testMower);
 
         System.out.println("This is the height and width");
         System.out.println(testYard.returnHeight());
