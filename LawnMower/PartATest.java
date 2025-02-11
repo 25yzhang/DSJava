@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import mow.*;
 
-public class Test {
+public class PartATest {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

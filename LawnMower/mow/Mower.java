@@ -97,4 +97,71 @@ public class Mower {
     public void cutGrass(Yard yard) {
         yard.cellOverride(row, column, ' ');
     }
+
+    public void randomCorner(Yard yard) {
+        int randomCorner = (int) (3 * Math.random());
+        int randomDirection = (int) (1 * Math.random());
+
+        if (randomCorner == 0) { // top left corner
+            column = 0;
+            row = 0;
+            if (randomDirection == 1) {
+                direction = 1;
+            } else if (randomDirection == 2) {
+                direction = 2;
+            }
+        } else if (randomCorner == 1) { // top right corner
+            row = 0;
+            column = yard.returnWidth() - 1;
+            if (randomDirection == 0) {
+                direction = 2;
+            } else if (randomDirection == 1) {
+                direction = 3;
+            }
+        } else if (randomCorner == 2) { // bottom left corner
+            column = 0;
+            row = yard.returnHeight() - 1;
+            if (randomDirection == 0) {
+                direction = 1;
+            } else if (randomDirection == 1) {
+                direction = 2;
+            }
+        } else if (randomCorner == 3) { // bottom right corner
+            row = yard.returnHeight() - 1;
+            column = yard.returnWidth() - 1;
+            if (randomDirection == 0) {
+                direction = 1;
+            } else if (randomDirection == 3) {
+                direction = 2;
+            }
+        }
+    }
+
+    public boolean updateMower(Yard yard) {
+        for (int r = 0; r < yard.returnHeight(); r++) {
+            for (int c = 0; c < yard.returnWidth(); c++) {
+                if (yard.returnStatus(r, c) == '+') {
+                    // move row and column to align mower
+                    while (r < row) {
+                        direction = 0;
+                        moveForward();
+                    }
+                    while (r > row) {
+                        direction = 2;
+                        moveForward();
+                    }
+                    while (c < column) {
+                        direction = 3;
+                        moveForward();
+                    }
+                    while (c > column) {
+                        direction = 1;
+                        moveForward();
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
