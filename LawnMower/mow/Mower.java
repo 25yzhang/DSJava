@@ -47,6 +47,8 @@ public class Mower {
     public void setDirection(int newDirection) {
         if (newDirection <= MAX_DIRECTION) {
             direction = newDirection;
+        } else {
+            direction = 0;
         }
     }
 
@@ -158,6 +160,17 @@ public class Mower {
                         direction = 1;
                         moveForward();
                     }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean checkAvailableGrass(Yard yard) {
+        for (int r = 0; r < yard.returnHeight(); r++) {
+            for (int c = 0; c < yard.returnWidth(); c++) {
+                if (yard.returnStatus(r, c) == '+') {
                     return true;
                 }
             }

@@ -1,7 +1,7 @@
 import mow.*;
 import java.util.Scanner;
 
-public class PartCTest {
+public class SideToSideCutDemo {
     // clear screen function
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
