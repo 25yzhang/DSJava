@@ -41,6 +41,7 @@ public class SpiralCut {
         // cut initial piece of grass
         testMower.cutGrass(testYard);
 
+        // enter into sprial program
         while (testMower.detectGrass(testYard) == true) {
             delay(500);
             clearScreen();
