@@ -1,0 +1,8 @@
+Jerry Zhang
+Mr. Eng
+AT Java
+HW 33
+
+Part A:
+Question 1: answer a (Resizable shape = new Resizable()); will cause a compilation error because it attempts to create an object of type Resizable. Interfaces simply define methods but do not include implementations, meaning an object can't be instantiated with Resizable()
+Question 2: because circle (declared from "Resizable circle - new Circle(5.5)") is an object of type Resizable, it can only access the methods in the Resizable interface, not the Circle class. This means that methods from the Circle class will cause compilation errors. Only answer B works.
