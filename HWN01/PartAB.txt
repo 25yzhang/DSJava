@@ -1,0 +1,20 @@
+Part A:
+Laurie launches an email app on her smartphone. She uses it to check her work email. Describe in your own words 
+(i.e., do not use Chat GPT or other AI) the steps that you think are involved whenever her email app sends or 
+receives information to or from her email server.
+
+When opening the email website, the brower issues an http request in order to send and recieve information from
+the website. In the case of emails, TCP will most likely be used to prevent loss of data, insuring that all of
+Laurie's email's informaiton will be preserved. Next, the IPv4 or IPv6 protocal will determine where to send it,
+also noting where the source is from (Laurie's phone). All of this is most likely done through Wireless LAN,
+allowing Laurie to communicate with other devises, including the email server.
+
+Part B:
+Jerry decides to play an online first person shooter game with some friends that he met virtually.  
+Describe in your own words (i.e., do not use Chat GPT or other AI) the steps that you think are 
+involved whenever his game application on his laptop sends or receives information to or from the game server.
+
+Using either ethernet or wireless LAN, the computer is able to connect with other devices including the game's
+server. To transmitt packets (of information), the UDP protocol is most likely used as it is faster than UDP and
+occasional loss of data is not that big of an issue in gaming. The network layer is used to identify whose information
+is being sent to and from the game server, allowing the game server to be updated on each player's stats.
