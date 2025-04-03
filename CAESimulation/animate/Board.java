@@ -17,8 +17,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Board extends JPanel implements KeyListener {
-    private final int B_WIDTH = 1280;
-    private final int B_HEIGHT = 720;
+    public static final int B_WIDTH = 1280;
+    public static final int B_HEIGHT = 720;
     final int FLOOR = B_HEIGHT - 25;
 
     // declare member variable of type Cannon

@@ -19,6 +19,7 @@ public class Cannon {
     BufferedImage cannonImage;
     private final int B_WIDTH = 1280;
     private final int B_HEIGHT = 720;
+    final static int HYPOT = 100;
 
     // image dimensions
     final int CANNON_HEIGHT = 51;
@@ -26,6 +27,7 @@ public class Cannon {
     final int PIVOT_X = 15;
     final int PIVOT_Y = CANNON_HEIGHT / 2;
 
+    // draw cannon method
     public void drawCannon(Graphics2D g2d) {
         // transform cannon
         AffineTransform transform = new AffineTransform();
@@ -105,8 +107,12 @@ public class Cannon {
     }
 
     // fire cannon
-    public void fireCannon() {
+    public void fireCannon() { // Cannonball cannonball
         playCannonSound();
+        // switch (cannonBall.getState()) {
+        // case IDLE:
+        // cannonBall.setX()
+        // }
     }
 
     // methods to get and set member variables
