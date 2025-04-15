@@ -18,12 +18,11 @@ public class CannonBall {
     private double ax;
     private double ay;
 
-    private final double TIMER_INTERVAL = 20;
     public static final double MUZZLE_VELOCITY = 37;
     private double timeScale;
     private STATE currentState;
     private double ground;
-    private final int ballDiameter = 50;
+    private final int ballDiameter = 20;
 
     public enum STATE {
         IDLE,
@@ -38,38 +37,30 @@ public class CannonBall {
     }
 
     public void draw(Graphics2D g2d) {
-        switch (currentState) { // do nothing when idle
-            case FLYING:
-                g2d.setColor(Color.RED);
-                g2d.fillOval((int) x, (int) y, ballDiameter, ballDiameter);
-            case EXPLODING:
-                try {
-                    File imageFile = new File("media/flame01.png");
-                    BufferedImage flameImage1 = ImageIO.read(imageFile);
-                    AffineTransform transform = new AffineTransform();
-                    transform.translate(x, y);
-                    g2d.drawImage(flameImage1, transform, null);
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
+        if (currentState == STATE.FLYING) {
+            g2d.setColor(Color.RED);
+            g2d.fillOval((int) x, (int) y, ballDiameter, ballDiameter);
+        } else if (currentState == STATE.EXPLODING) {
+            try {
+                File imageFile = new File("media/flame01.png");
+                BufferedImage flameImage1 = ImageIO.read(imageFile);
+                AffineTransform transform = new AffineTransform();
+                transform.translate(x, y);
+                g2d.drawImage(flameImage1, transform, null);
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
-    /*
-     * The updateBall() method uses the constant acceleration equations
-     * to update the velocity and position of the ball each timer interval.
-     * note that when calculating the new velocity, the acceleration term is divided
-     * by the
-     * time scale in case the user wants to slow down the animation.
-     * Similarly, when calculating the new position, the velocity term is divided by
-     * the time scale
-     * in case the user wants to slow down the animation.
-     */
     public void updateBall() {
-        vx = vx + ax;
-        vy = vy + ay;
-        x = x + vx;
-        y = y + vy;
+        if (currentState == STATE.IDLE) {
+            vx = vx + ax;
+            vy = vy + ay;
+            x = x + vx;
+            y = y + vy;
+        }
+
         if (y >= ground) {
             currentState = STATE.EXPLODING;
         }

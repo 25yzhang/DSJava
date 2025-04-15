@@ -107,12 +107,9 @@ public class Cannon {
     }
 
     // fire cannon
-    public void fireCannon() { // Cannonball cannonball
+    public void fireCannon(CannonBall cannonBall) {
         playCannonSound();
-        // switch (cannonBall.getState()) {
-        // case IDLE:
-        // cannonBall.setX()
-        // }
+        cannonBall.launch(x, y, muzzleVelocity, muzzleVelocity);
     }
 
     // methods to get and set member variables

@@ -1,18 +1,14 @@
 package animate;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,6 +16,10 @@ public class Board extends JPanel implements KeyListener {
     public static final int B_WIDTH = 1280;
     public static final int B_HEIGHT = 720;
     final int FLOOR = B_HEIGHT - 25;
+    private CannonBall cannonBall = new CannonBall(0, 1, FLOOR);
+    private Timer timer;
+    private final int INITIAL_DELAY = 100;
+    private final int TIMER_INTERVAL = 25;
 
     // declare member variable of type Cannon
     Cannon cannon = new Cannon();
@@ -32,6 +32,17 @@ public class Board extends JPanel implements KeyListener {
         // register Board object as a key listener
         this.setFocusable(true);
         this.addKeyListener(this);
+
+        // initiate timer object
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new ScheduledUpdate(), INITIAL_DELAY, TIMER_INTERVAL);
+    }
+
+    private class ScheduledUpdate extends TimerTask {
+        public void run() {
+            cannonBall.updateBall();
+            repaint();
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -43,6 +54,7 @@ public class Board extends JPanel implements KeyListener {
         g2d.setColor(Color.GREEN);
         g2d.fillRect(0, FLOOR, B_WIDTH, B_HEIGHT);
         cannon.drawCannon(g2d);
+        cannonBall.draw(g2d);
     }
 
     public static void main(String[] args) {
@@ -55,7 +67,7 @@ public class Board extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 32) {
             System.out.println("Spacebar was pressed.");
-            cannon.fireCannon();
+            cannon.fireCannon(cannonBall);
         } else if (e.getKeyCode() == 37) {
             System.out.println("Left arrow was pressed.");
             cannon.rotateCounterClockwise(10);
