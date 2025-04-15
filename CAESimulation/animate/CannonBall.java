@@ -9,7 +9,6 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class CannonBall {
-
     // declare member variables
     private double x;
     private double y;
@@ -18,13 +17,12 @@ public class CannonBall {
     private double ax;
     private double ay;
 
-    public static final double MUZZLE_VELOCITY = 37;
     private double timeScale;
-    private STATE currentState;
+    private STATE currentState = STATE.IDLE;
     private double ground;
-    private final int ballDiameter = 20;
+    public static final int BALL_DIAMETER = 20;
 
-    public enum STATE {
+    public static enum STATE {
         IDLE,
         FLYING,
         EXPLODING
@@ -39,13 +37,13 @@ public class CannonBall {
     public void draw(Graphics2D g2d) {
         if (currentState == STATE.FLYING) {
             g2d.setColor(Color.RED);
-            g2d.fillOval((int) x, (int) y, ballDiameter, ballDiameter);
+            g2d.fillOval((int) x, (int) y, BALL_DIAMETER, BALL_DIAMETER);
         } else if (currentState == STATE.EXPLODING) {
             try {
                 File imageFile = new File("media/flame01.png");
                 BufferedImage flameImage1 = ImageIO.read(imageFile);
                 AffineTransform transform = new AffineTransform();
-                transform.translate(x, y);
+                transform.translate(x, y - 35);
                 g2d.drawImage(flameImage1, transform, null);
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -72,11 +70,13 @@ public class CannonBall {
      * with the inital velocity of (vx, vy).
      */
     public void launch(double x, double y, double vx, double vy) {
-        currentState = STATE.FLYING;
-        this.x = x;
-        this.y = y;
-        this.vx = vx;
-        this.vy = vy;
+        if (currentState != STATE.FLYING) {
+            currentState = STATE.FLYING;
+            this.x = x;
+            this.y = y;
+            this.vx = vx;
+            this.vy = vy;
+        }
     }
 
     /*

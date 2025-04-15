@@ -61,7 +61,20 @@ public class Cannon {
         x = 60 - PIVOT_X;
         y = 720 - 60 - PIVOT_Y;
         rotation = -45;
-        muzzleVelocity = 37;
+
+        muzzleVelocity = 32;
+    }
+
+    // fire cannon
+    public void fireCannon(CannonBall cannonBall) {
+        if (cannonBall.getState() != CannonBall.STATE.FLYING) {
+            playCannonSound();
+        }
+
+        cannonBall.launch((x + PIVOT_X) + (HYPOT * Math.cos(Math.toRadians(rotation))) - (CannonBall.BALL_DIAMETER / 2),
+                (y + PIVOT_Y) + (HYPOT * Math.sin(Math.toRadians(rotation))) - (CannonBall.BALL_DIAMETER / 2),
+                Math.cos(Math.toRadians(rotation)) * muzzleVelocity,
+                Math.sin(Math.toRadians(rotation)) * muzzleVelocity);
     }
 
     // methods to play sound effects
@@ -83,6 +96,7 @@ public class Cannon {
         } catch (Exception e) {
             System.err.println("cannonSound doesn't work");
         }
+
     }
 
     // rotate cannon methods
@@ -106,13 +120,6 @@ public class Cannon {
         }
     }
 
-    // fire cannon
-    public void fireCannon(CannonBall cannonBall) {
-        playCannonSound();
-        cannonBall.launch(x, y, Math.cos(Math.toRadians(rotation)) * muzzleVelocity,
-                Math.sin(Math.toRadians(-1) * muzzleVelocity));
-    }
-
     // methods to get and set member variables
     public double getX() {
         return x;
@@ -131,7 +138,7 @@ public class Cannon {
     }
 
     public double getRotation() {
-        return rotation;
+        return -rotation;
     }
 
     public void setRotation(double newRotation) {

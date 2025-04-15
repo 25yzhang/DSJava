@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -16,10 +17,15 @@ public class Board extends JPanel implements KeyListener {
     public static final int B_WIDTH = 1280;
     public static final int B_HEIGHT = 720;
     final int FLOOR = B_HEIGHT - 25;
-    private CannonBall cannonBall = new CannonBall(0, 1, FLOOR);
+    final int G_BOARD = 1;
+
+    // CANNONBALL OBJECT
+    private CannonBall cannonBall = new CannonBall(0, G_BOARD, FLOOR);
+
+    // TIMER
     private Timer timer;
     private final int INITIAL_DELAY = 100;
-    private final int TIMER_INTERVAL = 25;
+    private final int TIMER_INTERVAL = 20;
 
     // declare member variable of type Cannon
     Cannon cannon = new Cannon();
@@ -55,6 +61,14 @@ public class Board extends JPanel implements KeyListener {
         g2d.fillRect(0, FLOOR, B_WIDTH, B_HEIGHT);
         cannon.drawCannon(g2d);
         cannonBall.draw(g2d);
+
+        Graphics information = (Graphics2D) g;
+        information.setColor(Color.MAGENTA);
+        Font font = new Font("Arial", Font.PLAIN, 15);
+        information.setFont(font);
+        information.drawString("Use left/right arrows to adjust angle", 50, 50);
+        information.drawString("Use space key to fire cannon", 50, 70);
+        information.drawString("Angle = " + cannon.getRotation() + " deg", 50, 90);
     }
 
     public static void main(String[] args) {
