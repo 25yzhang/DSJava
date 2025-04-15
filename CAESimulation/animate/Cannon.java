@@ -61,7 +61,7 @@ public class Cannon {
         x = 60 - PIVOT_X;
         y = 720 - 60 - PIVOT_Y;
         rotation = -45;
-        muzzleVelocity = 0;
+        muzzleVelocity = 37;
     }
 
     // methods to play sound effects
@@ -109,7 +109,8 @@ public class Cannon {
     // fire cannon
     public void fireCannon(CannonBall cannonBall) {
         playCannonSound();
-        cannonBall.launch(x, y, muzzleVelocity, muzzleVelocity);
+        cannonBall.launch(x, y, Math.cos(Math.toRadians(rotation)) * muzzleVelocity,
+                Math.sin(Math.toRadians(-1) * muzzleVelocity));
     }
 
     // methods to get and set member variables

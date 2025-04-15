@@ -54,7 +54,7 @@ public class CannonBall {
     }
 
     public void updateBall() {
-        if (currentState == STATE.IDLE) {
+        if (currentState == STATE.FLYING) {
             vx = vx + ax;
             vy = vy + ay;
             x = x + vx;
