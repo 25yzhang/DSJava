@@ -17,7 +17,6 @@ public class Cannon {
     private double rotation;
     private double muzzleVelocity;
     BufferedImage cannonImage;
-    private final int B_WIDTH = 1280;
     private final int B_HEIGHT = 720;
     final static int HYPOT = 100;
 
